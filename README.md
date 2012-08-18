@@ -5,6 +5,9 @@
 bio-bioinformatics-impact aims to collect information on researchers
 and groups in bioinformatics.
 
+Note: this software is very much a work in progress, your mileage may
+vary.
+
 ## Step 1: Fetch impact
 
 Both Google and Microsoft publish citations, and impact indicators. 
@@ -35,9 +38,6 @@ and lists papers of the last 4 years with:
 
 using the bio-rdf pubmed feature (part of the bioruby-rdf biogem
 package).
-
-Note: this software is very much a work in progress, your mileage may
-vary.
 
 ## Installation
 
