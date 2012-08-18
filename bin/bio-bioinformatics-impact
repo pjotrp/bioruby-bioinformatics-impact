@@ -13,7 +13,7 @@ VERSION_FILENAME=File.join(gempath,'VERSION')
 version = File.new(VERSION_FILENAME).read.chomp
 
 # print banner
-print "bio-bioinformatics-impact #{version} by Pjotr Prins 2012\n"
+$stderr.print "bio-bioinformatics-impact #{version} by Pjotr Prins 2012\n"
 
 if ARGV.size == 0
   print USAGE
@@ -23,13 +23,22 @@ require 'bio-bioinformatics-impact'
 require 'optparse'
 
 # Uncomment when using the bio-logger 
-# require 'bio-logger'
-# log = Bio::Log::LoggerPlus.new 'bio-bioinformatics-impact'
-# log.outputters = Bio::Log::Outputter.stderr 
-# Bio::Log::CLI.logger('stderr')
-# Bio::Log::CLI.trace('info')
+require 'bio-logger'
+log = Bio::Log::LoggerPlus.new 'bio-bioinformatics-impact'
+log.outputters = Bio::Log::Outputter.stderr 
+Bio::Log::CLI.logger('stderr')
+Bio::Log::CLI.trace('info')
 
 options = {:example_switch=>false,:show_help=>false}
+
+case ARGV[0]
+  when 'msimpact'
+    ARGV.shift
+    BioBioinformaticsImpact::MsImpact::Parser.handler
+    exit 0
+end
+
+
 opts = OptionParser.new do |o|
   o.banner = "Usage: #{File.basename($0)} [options] filename\ne.g. #{File.basename($0)} test.txt"
 

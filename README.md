@@ -5,7 +5,39 @@
 bio-bioinformatics-impact aims to collect information on researchers
 and groups in bioinformatics.
 
-Note: this software is very much a work in progress!
+## Step 1: Fetch impact
+
+Both Google and Microsoft publish citations, and impact indicators. 
+
+### Microsoft academic research
+
+Find an author with a query such as
+http://academic.research.microsoft.com/search.html?query=Lincoln%20D.%20Stein 
+
+That should give you the recognized name, e.g. 'Lincoln D. Stein'
+
+The name can be used to fetch the numbers with
+
+```bash
+  bio-bioinformatics-impact msimpact --author "Lincoln D. Stein"
+    "Name","Publications","Citations","G-index","H-index"
+    "Lincoln D. Stein","274","10264","99","45"
+```
+
+## Step 2: List publications
+
+bio-bioinformatics-impact takes a pubmed search string as input,
+and lists papers of the last 4 years with:
+
+```bash
+  bio-rdf pubmed --tabulate --search '(Lincoln Stein[Author]) AND ("2008/01/01"[Date - Publication] : "3000"[Date - Publication])' --pubmed-citations --scholar-citations > Lincoln_Stein.csv
+```
+
+using the bio-rdf pubmed feature (part of the bioruby-rdf biogem
+package).
+
+Note: this software is very much a work in progress, your mileage may
+vary.
 
 ## Installation
 
