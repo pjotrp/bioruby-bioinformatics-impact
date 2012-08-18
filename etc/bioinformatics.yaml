@@ -1,37 +1,80 @@
 # To get a complete list, also see http://www.iscb.org/iscb-awards/
 # and http://academic.research.microsoft.com/RankList?entitytype=2&topDomainID=2&subDomainID=21&last=0&start=1&end=100
 - Carol Goble
-  url: http://www.cs.man.ac.uk/~carole/
+  # Publications: 352 | Citations: 6755 | G-Index: 73 | H-Index: 41
+  :url: http://www.cs.man.ac.uk/~carole/
+  :ms: 829389/carole-goble
 - Aviv Regev
-  url: http://www.hhmi.org/research/ecs/regev_bio.html
-- Peter Park
+  # Publications: 93 | Citations: 3390 | G-Index: 57 | H-Index: 26
+  :ms: 1656926/aviv-regev
+  :url: http://www.hhmi.org/research/ecs/regev_bio.html
+- Peter J. Park
+  # Publications: 91 | Citations: 1864 | G-Index: 41 | H-Index: 23
+  :ms: 1619683/peter-j-park
 - John Quackenbush
-- Yves van de Peer (76)
-- Soren Brunak (69)
-- Burkhard Rost (66)
-- Ewan Birney (99)
-- Alex Bateman (50)
-- Alonso Valencia (70)
+  # Publications: 26 | Citations: 801 | G-Index: 26 | H-Index: 9
+  :ms: 759939/john-quackenbush
+- Yves van de Peer
+  # Publications: 228 | Citations: 9182 | G-Index: 91 | H-Index: 49
+  :ms: 214868/yves-van-de-peer
+- Soren Brunak 
+  # Publications: 210 | Citations: 15827 | G-Index: 125 | H-Index: 53
+  :ms: 42083/soren-brunak
+  :country: Denmark
+- Burkhard Rost
+  # Publications: 215 | Citations: 10890 | G-Index: 101 | H-Index: 51
+  :ms: 319805/burkhard-rost
+- Ewan Birney 
+  # Publications: 176 | Citations: 22636 | G-Index: 150 | H-Index: 54
+  :ms: 394802/ewan-birney
+  :country: UK
+- Alex Bateman 
+  # UK Publications: 108 | Citations: 18900 | G-Index: 108 | H-Index: 35
+- Alfonso Valencia
+  # Spain Publications: 323 | Citations: 8477 | G-Index: 83 | H-Index: 45
 - Peer Bork
-- Mark Gerstein (102)
+  # UK Publications: 417 | Citations: 32302 | G-Index: 172 | H-Index: 83
+- Mark Gerstein 
+  # Publications: 468 | Citations: 16473 | G-Index: 113 | H-Index: 70
+  :ms: 984673/mark-gerstein
 - Lincoln D. Stein
+  # Publications: 274 | Citations: 10264 | G-Index: 99 | H-Index: 45
   :ms: 28276/lincoln-d-stein
-- Ritsert Jansen
+- Ritsert C. Jansen
+  # NL Publications: 100 | Citations: 2538 | G-Index: 49 | H-Index: 24
+  :ms: 1363494/ritsert-c-jansen
 - David Reich
+  # 
 - David Altshuler
+  # 
 - Eran Segal
+  # 
 - Sean R. Eddy
+  # 
 - Rolf Apweiler
+  # 
 - Phillip Bourne
+  # 
 - Chris Sander
+  # 
 - Steven Brenner
+  # 
 - David Baker
+  # 
 - Ian Holmes
+  # 
 - Kimmen Sjolander
+  # 
 - Mike Eisen
+  # 
 - David Haussler
+  # 
 - Pavel Pevzner
+  # 
 - Ron Shamir
+  # 
 - Roded Sharan
+  # 
 - Thomas Lengauer
+  # 
 
