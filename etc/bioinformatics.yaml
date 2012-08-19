@@ -4,36 +4,51 @@
   # Publications: 352 | Citations: 6755 | G-Index: 73 | H-Index: 41
   :url: http://www.cs.man.ac.uk/~carole/
   :ms: 829389/carole-goble
+  :dbpedia: Carole_Goble
 - Aviv Regev
   # Publications: 93 | Citations: 3390 | G-Index: 57 | H-Index: 26
   :ms: 1656926/aviv-regev
   :url: http://www.hhmi.org/research/ecs/regev_bio.html
+  :dbpedia: Aviv_Regev
 - Peter J. Park
   # Publications: 91 | Citations: 1864 | G-Index: 41 | H-Index: 23
   :ms: 1619683/peter-j-park
+  :dbpedia: unknown
 - John Quackenbush
   # Publications: 26 | Citations: 801 | G-Index: 26 | H-Index: 9
   :ms: 759939/john-quackenbush
+  :dbpedia: John_Quackenbush
 - Yves van de Peer
   # Publications: 228 | Citations: 9182 | G-Index: 91 | H-Index: 49
   :ms: 214868/yves-van-de-peer
+  :dbpedia: unknown
 - Soren Brunak 
   # Publications: 210 | Citations: 15827 | G-Index: 125 | H-Index: 53
   :ms: 42083/soren-brunak
+  :dbpedia: Søren_Brunak
   :country: Denmark
 - Burkhard Rost
   # Publications: 215 | Citations: 10890 | G-Index: 101 | H-Index: 51
   :ms: 319805/burkhard-rost
+  :dbpedia: unknown
+  :url: http://www.columbia.edu/~rost/
 - Ewan Birney 
   # Publications: 176 | Citations: 22636 | G-Index: 150 | H-Index: 54
   :ms: 394802/ewan-birney
+  :dbpedia: Ewan_Birney
   :country: UK
 - Alex Bateman 
   # UK Publications: 108 | Citations: 18900 | G-Index: 108 | H-Index: 35
+  :dbpedia: User:Alexbateman
+  :ms: 115797/alex-bateman
 - Alfonso Valencia
   # Spain Publications: 323 | Citations: 8477 | G-Index: 83 | H-Index: 45
+  :dbpedia: unknown
+  :ms: 333362/alfonso-valencia
 - Peer Bork
   # UK Publications: 417 | Citations: 32302 | G-Index: 172 | H-Index: 83
+  :dbpedia: Peer_Bork
+  :ms: 506309/peer-bork
 - Mark Gerstein 
   # Publications: 468 | Citations: 16473 | G-Index: 113 | H-Index: 70
   :ms: 984673/mark-gerstein
@@ -48,37 +63,71 @@
   # NL Publications: 100 | Citations: 2538 | G-Index: 49 | H-Index: 24
   :ms: 1363494/ritsert-c-jansen
 - David Reich
-  # 
+  # Publications: 119 | Citations: 7119 | G-Index: 84 | H-Index: 35
+  :ms: 3227093/david-e-reich
+  :dbpedia: David_Reich_(geneticist)
 - David Altshuler
+  # Publications: 178 | Citations: 16985 | G-Index: 129 | H-Index: 64
+  :ms: 2268888/david-m-altshuler
+  :dbpedia: David_Altshuler
+- Heng Li
   # 
 - Eran Segal
-  # 
+  # Publications: 88 | Citations: 4788 | G-Index: 69 | H-Index: 30
+  :ms: 53758479/eran-segal
+  :dbpedia: Eran_Segal
 - Sean R. Eddy
-  # 
-- Rolf Apweiler
-  # 
-- Phillip Bourne
-  # 
+  # Publications: 127 | Citations: 26051 | G-Index: 127 | H-Index: 52
+  :dbpedia: Sean_Eddy
+  :ms: 1473272/sean-r-eddy
+- Rolf Apweiler 
+  # Publications: 226 | Citations: 13478 | G-Index: 114 | H-Index: 55
+  :ms: 1297783/rolf-apweiler
+  :dbpedia: Rolf_Apweiler
+- Philip Bourne
+  # Publications: 247 | Citations: 10228 | G-Index: 100 | H-Index: 28
+  :dbpedia: Philip_Bourne
+  :ms: 47061748/philip-e-bourne
 - Chris Sander
   # 
-- Steven Brenner
-  # 
+- Steven E. Brenner
+  # Publications: 184 | Citations: 9420 | G-Index: 96 | H-Index: 37
+  :dbpedia: Steven_E._Brenner
+  :ms: 229163/steven-e-brenner
 - David Baker
   # 
+  :dbpedia: David_Baker_(biochemist)
+  :ms:
 - Ian Holmes
   # 
+  :dbpedia: 
+  :ms:
 - Kimmen Sjolander
   # 
+  :dbpedia: 
+  :ms:
 - Mike Eisen
   # 
+  :dbpedia: 
+  :ms:
 - David Haussler
   # 
+  :dbpedia: 
+  :ms:
 - Pavel Pevzner
   # 
+  :dbpedia: 
+  :ms:
 - Ron Shamir
   # 
+  :dbpedia: 
+  :ms:
 - Roded Sharan
   # 
+  :dbpedia: 
+  :ms:
 - Thomas Lengauer
   # 
+  :dbpedia: 
+  :ms:
 
