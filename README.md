@@ -8,9 +8,17 @@ and groups in bioinformatics.
 Note: this software is very much a work in progress, your mileage may
 vary.
 
-## Step 1: Fetch impact
+## Step 1: Personal information
 
-Both Google and Microsoft publish citations, and impact indicators. 
+If available on Wikipedia, we can fetch personal information through
+
+```bash
+  bio-bioinformatics-impact dbpedia --person Lincoln_Stein
+```
+
+## Step 2: Fetch impact
+
+Both Google and Microsoft publish citations, and impact indicators.
 
 ### Microsoft academic research
 
@@ -27,7 +35,7 @@ The name can be used to fetch the numbers with
     "Lincoln D. Stein","274","10264","99","45"
 ```
 
-## Step 2: List publications
+## Step 3: List publications
 
 bio-bioinformatics-impact takes a pubmed search string as input,
 and lists papers of the last 4 years with:

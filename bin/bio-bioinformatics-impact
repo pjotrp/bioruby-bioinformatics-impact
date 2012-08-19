@@ -4,8 +4,6 @@
 # Author:: Pjotr Prins
 # Copyright:: 2012
 
-USAGE = "Describe bio-bioinformatics-impact"
-
 gempath = File.dirname(File.dirname(__FILE__))
 $: << File.join(gempath,'lib')
 
@@ -29,6 +27,14 @@ log.outputters = Bio::Log::Outputter.stderr
 Bio::Log::CLI.logger('stderr')
 Bio::Log::CLI.trace('info')
 
+USAGE = """
+  Usage: 
+    
+    dbpedia --help
+    msimpact --help
+
+    See README.txt
+"""
 options = {:example_switch=>false,:show_help=>false}
 
 case ARGV[0]
@@ -36,6 +42,12 @@ case ARGV[0]
     ARGV.shift
     BioBioinformaticsImpact::MsImpact::Parser.handler
     exit 0
+  when 'dbpedia'
+    ARGV.shift
+    BioBioinformaticsImpact::DbPedia::Parser.handler
+    exit 0
+  else 
+    $stderr.print USAGE
 end
 
 

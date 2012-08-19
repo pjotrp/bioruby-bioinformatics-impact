@@ -9,5 +9,6 @@
 # In this file only require other files. Avoid other source code.
 
 require 'bio-bioinformatics-impact/bioinformatics-impact.rb'
+require 'bio-bioinformatics-impact/handlers/dbpedia.rb'
 require 'bio-bioinformatics-impact/handlers/msimpact.rb'
 
