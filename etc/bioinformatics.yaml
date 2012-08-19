@@ -5,6 +5,11 @@
   :url: http://www.cs.man.ac.uk/~carole/
   :ms: 829389/carole-goble
   :dbpedia: Carole_Goble
+- Dawn Field
+  # Publications: 66 | Citations: 841 | G-Index: 26 | H-Index: 15
+  :url: http://www.ceh.ac.uk/staffwebpages/DawnField.html
+  :dbpedia: unknown
+  :ms: 51297620/dawn-field
 - Aviv Regev
   # Publications: 93 | Citations: 3390 | G-Index: 57 | H-Index: 26
   :ms: 1656926/aviv-regev
@@ -59,9 +64,18 @@
     - http://stein.cshl.org/~lstein/
     - http://oicr.on.ca/person/researcher/lincoln-stein
   :dbpedia: Lincoln_Stein
+  :oss_license: free
 - Ritsert C. Jansen
   # NL Publications: 100 | Citations: 2538 | G-Index: 49 | H-Index: 24
   :ms: 1363494/ritsert-c-jansen
+  :software: MQM (R/qtl)
+  :oss_license: free
+- Karl W. Broman
+  # Publications: 135 | Citations: 3317 | G-Index: 56 | H-Index: 27
+  :url: http://www.biostat.wisc.edu/~kbroman/
+  :ms: 17948041/karl-w-broman
+  :software: R/qtl
+  :oss_license: free
 - David Reich
   # Publications: 119 | Citations: 7119 | G-Index: 84 | H-Index: 35
   :ms: 3227093/david-e-reich
@@ -70,16 +84,18 @@
   # Publications: 178 | Citations: 16985 | G-Index: 129 | H-Index: 64
   :ms: 2268888/david-m-altshuler
   :dbpedia: David_Altshuler
-- Heng Li
-  # 
 - Eran Segal
   # Publications: 88 | Citations: 4788 | G-Index: 69 | H-Index: 30
   :ms: 53758479/eran-segal
   :dbpedia: Eran_Segal
+  :sofware: Genomica
+  :oss_license: academic
 - Sean R. Eddy
   # Publications: 127 | Citations: 26051 | G-Index: 127 | H-Index: 52
   :dbpedia: Sean_Eddy
   :ms: 1473272/sean-r-eddy
+  :software: HMMR
+  :oss_license: free
 - Rolf Apweiler 
   # Publications: 226 | Citations: 13478 | G-Index: 114 | H-Index: 55
   :ms: 1297783/rolf-apweiler
@@ -98,10 +114,10 @@
   # 
   :dbpedia: David_Baker_(biochemist)
   :ms:
-- Ian Holmes
+- Ian H. Holmes
   # 
-  :dbpedia: 
-  :ms:
+  :dbpedia: unknown
+  :ms: 
 - Kimmen Sjolander
   # 
   :dbpedia: 
@@ -111,9 +127,11 @@
   :dbpedia: 
   :ms:
 - David Haussler
-  # 
-  :dbpedia: 
-  :ms:
+  # Publications: 308 | Citations: 29064 | G-Index: 168 | H-Index: 78
+  :dbpedia: David_Haussler
+  :ms: 333732/david-haussler
+  :software: UCSC Genome Browser
+  :oss_license: academic
 - Pavel Pevzner
   # 
   :dbpedia: 
@@ -131,11 +149,17 @@
   :dbpedia: 
   :ms:
 - Ziheng Yang
-  :dbpedia: 
-  :ms:
+  # Publications: 193 | Citations: 16311 | G-Index: 127 | H-Index: 53
+  :dbpedia: Ziheng_Yang
+  :ms: 1778657/ziheng-yang
+  :software: PAML
+  :oss_license: academic
 - Rainer Breitling
-  :dbpedia: 
-  :ms:
+  # Publications: 98 | Citations: 1373 | G-Index: 34 | H-Index: 22
+  :dbpedia: unknown
+  :ms: 2790156/rainer-breitling
+  :software: Rank Product
+  :oss_license: free
 # The list of bioinformatics Professors in the Netherlands
 - Jack A. M. Leunissen
   # Publications: 42 | Citations: 884 | G-Index: 29 | H-Index: 16
