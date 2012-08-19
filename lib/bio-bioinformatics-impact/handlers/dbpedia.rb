@@ -19,6 +19,18 @@ PREFIX geo: <http://www.georss.org/georss/>
 """
 
       module Person
+        def Person::get_workplaces store,id
+          query = """
+            select ?name,?workplace where
+            {
+            dbpedia:#{id}   rdfs:label ?name .
+            OPTIONAL { dbpedia:#{id} dbpprop:workplaces ?workplace . }
+            }
+            limit 10
+            """
+          response = store.select(PREFIX+query)
+          response.map { |item| item['award'] }
+        end
         def Person::get_awards store,id
           query = """
             select ?name,?award where
@@ -62,8 +74,9 @@ PREFIX geo: <http://www.georss.org/georss/>
         $stderr.print options
 
         store = FourStore::Store.new 'http://dbpedia.org/sparql/'
+        workplaces = Person::get_workplaces(store,options.person)
         awards = Person::get_awards(store,options.person)
-        p awards
+        p awards,workplaces
       end
     end
   end
