@@ -1,0 +1,50 @@
+@prefix foaf:	<http://xmlns.com/foaf/0.1/> .
+@prefix ns1:	<http://en.wikipedia.org/wiki/> .
+@prefix dbpedia:	<http://dbpedia.org/resource/> .
+ns1:Lincoln_Stein	foaf:primaryTopic	dbpedia:Lincoln_Stein .
+@prefix rdf:	<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ns4:	<http://schema.org/> .
+dbpedia:Lincoln_Stein	rdf:type	ns4:Person ,
+		foaf:Person .
+@prefix dbpedia-owl:	<http://dbpedia.org/ontology/> .
+dbpedia:Lincoln_Stein	rdf:type	dbpedia-owl:Agent .
+@prefix owl:	<http://www.w3.org/2002/07/owl#> .
+dbpedia:Lincoln_Stein	rdf:type	owl:Thing ,
+		dbpedia-owl:Person ,
+		dbpedia-owl:Scientist ;
+	owl:sameAs	dbpedia:Lincoln_Stein ,
+		<http://rdf.freebase.com/ns/m.0gk_kx_> .
+@prefix rdfs:	<http://www.w3.org/2000/01/rdf-schema#> .
+dbpedia:Lincoln_Stein	rdfs:label	"Lincoln Stein"@en ;
+	rdfs:comment	"Professor Lincoln D. Stein is a scientist and leader in bioinformatics and computational biology at the Ontario Institute for Cancer Research. Current projects include Reactome, WormBase,, BioPerl, Gramene, ENCODE, the Generic Model Organism Database, the Sequence Ontology and Cloud computing. In 2004, Lincoln was the winner of the Benjamin Franklin Award in Bioinformatics. Stein is also the original developer of CGI."@en ;
+	foaf:givenName	"Lincoln"@en ;
+	foaf:name	"Lincoln Stein"@en .
+@prefix dcterms:	<http://purl.org/dc/terms/> .
+@prefix category:	<http://dbpedia.org/resource/Category:> .
+dbpedia:Lincoln_Stein	dcterms:subject	category:American_scientists ,
+		category:Bioinformaticians ,
+		category:Living_people ,
+		category:Perl_people .
+@prefix ns10:	<http://www.w3.org/ns/prov#> .
+dbpedia:Lincoln_Stein	ns10:wasDerivedFrom	<http://en.wikipedia.org/wiki/Lincoln_Stein?oldid=485831810> ;
+	foaf:surname	"Stein"@en ;
+	foaf:isPrimaryTopicOf	ns1:Lincoln_Stein .
+@prefix dbpprop:	<http://dbpedia.org/property/> .
+dbpedia:Lincoln_Stein	dbpprop:name	"Lincoln Stein"@en ,
+		"Stein, Lincoln"@en .
+@prefix ns12:	<http://dbpedia.org/resource/Template:> .
+dbpedia:Lincoln_Stein	dbpprop:wikiPageUsesTemplate	ns12:Persondata ,
+		ns12:Infobox_scientist ;
+	dbpedia-owl:award	<http://dbpedia.org/resource/Benjamin_Franklin_Award_(Bioinformatics)> ;
+	dbpedia-owl:abstract	"Professor Lincoln D. Stein is a scientist and leader in bioinformatics and computational biology at the Ontario Institute for Cancer Research. Current projects include Reactome, WormBase,, BioPerl, Gramene, ENCODE, the Generic Model Organism Database, the Sequence Ontology and Cloud computing. In 2004, Lincoln was the winner of the Benjamin Franklin Award in Bioinformatics. Stein is also the original developer of CGI. pm and a contributor to mod_perl, both widely used in the Perl language programming for web applications, as well as many other Perl modules and associated books."@en ;
+	dbpprop:almaMater	dbpedia:Harvard_University ;
+	dbpprop:workplaces	dbpedia:Harvard_Medical_School ,
+		dbpedia:Ontario_Institute_for_Cancer_Research ,
+		dbpedia:Whitehead_Institute ,
+		dbpedia:Cold_Spring_Harbor_Laboratory .
+@prefix ns13:	<http://www4.wiwiss.fu-berlin.de/flickrwrappr/photos/> .
+dbpedia:Lincoln_Stein	dbpprop:hasPhotoCollection	ns13:Lincoln_Stein ;
+	dbpprop:awards	<http://dbpedia.org/resource/Benjamin_Franklin_Award_(Bioinformatics)> ;
+	dbpedia-owl:almaMater	dbpedia:Harvard_University .
+<http://dbpedia.org/resource/CGI.pm>	dbpprop:author	dbpedia:Lincoln_Stein ;
+	dbpedia-owl:author	dbpedia:Lincoln_Stein .
