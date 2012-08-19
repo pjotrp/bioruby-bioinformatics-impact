@@ -1,0 +1,17 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX p: <http://dbpedia.org/property/>
+PREFIX dbpedia: <http://dbpedia.org/resource/>
+PREFIX category: <http://dbpedia.org/resource/Category:>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX geo: <http://www.georss.org/georss/>
+
+select ?name,?abstract,?comment,?almamater where 
+{
+dbpedia:Lincoln_Stein   rdfs:label ?name .
+OPTIONAL { dbpedia:Lincoln_Stein rdfs:comment ?comment ; 
+                                 dbpedia-owl:abstract ?abstract ;
+                                 dbpprop:almaMater ?almamater . }
+}
+limit 10
+
