@@ -40,9 +40,10 @@
 - Lincoln D. Stein
   # Publications: 274 | Citations: 10264 | G-Index: 99 | H-Index: 45
   :ms: 28276/lincoln-d-stein
-  :url: http://stein.cshl.org/~lstein/
-  :url: http://oicr.on.ca/person/researcher/lincoln-stein
-  :wikipedia: Lincoln_Stein
+  :urls: 
+    - http://stein.cshl.org/~lstein/
+    - http://oicr.on.ca/person/researcher/lincoln-stein
+  :dbpedia: Lincoln_Stein
 - Ritsert C. Jansen
   # NL Publications: 100 | Citations: 2538 | G-Index: 49 | H-Index: 24
   :ms: 1363494/ritsert-c-jansen

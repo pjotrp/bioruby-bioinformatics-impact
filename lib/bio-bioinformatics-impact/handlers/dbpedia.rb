@@ -25,14 +25,26 @@ PREFIX geo: <http://www.georss.org/georss/>
             {
             dbpedia:#{id}   rdfs:label ?name .
             OPTIONAL { dbpedia:#{id} rdfs:comment ?comment ; 
-                                     dbpedia-owl:abstract ?abstract ;
-                                     dbpprop:almaMater ?almamater . }
+                                     dbpedia-owl:abstract ?abstract .
+                                     }
             }
             limit 10
             """
           response = store.select(PREFIX+query)
           raise "Problem with size of #{response}" if response.size != 1
           response[0]
+        end
+        def Person::get_almamaters store,id
+          query = """
+            select ?name,?almamater where
+            {
+            dbpedia:#{id}   rdfs:label ?name .
+            OPTIONAL { dbpedia:#{id} dbpprop:almaMater ?almamater . }
+            }
+            limit 10
+            """
+          response = store.select(PREFIX+query)
+          response.map { |item| item['almamater'] }
         end
         def Person::get_workplaces store,id
           query = """
@@ -92,8 +104,9 @@ PREFIX geo: <http://www.georss.org/georss/>
         info = Person::get_info(store,options.person)
         workplaces = Person::get_workplaces(store,options.person)
         awards = Person::get_awards(store,options.person)
-        print '"name","abstract","almamater","workplaces","awards","comment"',"\n"
-        print '"',[info["name"],info["abstract"],info["almamater"],workplaces.join(", "),awards.join(", "),info["comment"]].join("\",\""),"\"\n"
+        alma_maters = Person::get_almamaters(store,options.person)
+        print '"name","abstract","almamaters","workplaces","awards","comment"',"\n"
+        print '"',[info["name"],info["abstract"],alma_maters.join(", "),workplaces.join(", "),awards.join(", "),info["comment"]].join("\",\""),"\"\n"
       end
     end
   end
