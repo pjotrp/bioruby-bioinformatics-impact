@@ -122,8 +122,8 @@ module BioBioinformaticsImpact
           if link.href =~ /Organization/
             return link.text
           end
-          ''
         end
+        ''
       end
 
       def Parser::parse_author_page page
