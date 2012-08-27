@@ -35,6 +35,15 @@ The name can be used to fetch the numbers with
     "Lincoln D. Stein","274","10264","99","45"
 ```
 
+To get a long list 
+
+```bash
+  bio-bioinformatics-impact msimpact --search "bioinformatics" > list.csv
+  sort list.csv |uniq > uniq.csv
+  wc uniq.csv
+      1129   5728 149255 uniq.csv
+```
+
 ## Step 3: List publications
 
 bio-bioinformatics-impact takes a pubmed search string as input,

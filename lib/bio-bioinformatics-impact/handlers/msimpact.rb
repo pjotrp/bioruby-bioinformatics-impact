@@ -3,8 +3,17 @@ require 'ostruct'
 require 'mechanize'
 require 'logger'
 
+# Two search domains should be used:
+#
+# http://academic.research.microsoft.com/Detail?query=bioinformatics&searchtype=1&SearchDomain=2&start=11&end=20
+# http://academic.research.microsoft.com/Detail?query=bioinformatics&searchtype=1&SearchDomain=4&start=11&end=20
+
+
 module BioBioinformaticsImpact
   module MsImpact
+
+    DOMAINS = { 'bioinformatics' => [{"SearchDomain" => 4}, {"SearchDomain" => 2} ]}
+    PAGE_SIZE = 100
     module Parser
       include Bio::Log
 
@@ -32,19 +41,82 @@ module BioBioinformaticsImpact
           o.on("--author query",String,"Search query") do |query|
             options.author = query
           end
+          o.on("--search domain",String,"Search (e.g. bioinformatics)") do |query|
+            options.search = query
+          end
         end
         opts.parse!(ARGV)
         $stderr.print options
 
-        author = options.author
-        agent = Mechanize.new
-        # agent.log = Logger.new "mech.log"
-        # agent.user_agent_alias = 'Mac Safari'
-        if true
-          page = agent.get "http://academic.research.microsoft.com/search.html?query=Lincoln D. Stein"
-          authorpage = agent.page.link_with(:text => author).click
-          buf = authorpage.body
+        if options.search
+          print '"Name","Organisation","Publications","Citations","URL",""',"\n"
+          list_authors(options.search).each do | author |
+            print '"',[author[:author],author[:organisation],author[:publications],author[:citations],author[:url]].join('","'),'"',"\n"
+          end
         else
+          print '"Name","Publications","Citations","G-index","H-index"',"\n"
+          print '"',author_info(options).join('","'),'"',"\n"
+        end
+      end
+
+      def Parser::list_authors search
+        a = Mechanize.new { |agent|
+          agent.user_agent_alias = 'Mac Safari'
+        }
+        list = []
+        current = {}
+
+        [2,4].each do | domain |
+          (0..5).each do | page |
+            $stderr.print "."
+            a.get("http://academic.research.microsoft.com/Detail?query=bioinformatics&searchtype=1&SearchDomain=#{domain}&start=#{page*PAGE_SIZE+1}&end=#{(page+1)*PAGE_SIZE}") do | page |      
+              page.links.each do | link |
+                #  "Profile - Limsoon Wong"
+                #  "http://academic.research.microsoft.com/Author/2341760/limsoon-wong">
+                #  "Limsoon Wong"
+                #  "http://academic.research.microsoft.com/Author/2341760/limsoon-wong">
+                #  "National University of Singapore"
+                #  "Organization/13610/national-university-of-singapore">
+                #  "Publications: 336"
+                #  "http://academic.research.microsoft.com/Detail?entitytype=2&searchtype=2&id=2341760">
+                #  "Citations: 5125"
+                # pp link
+                # p link.href
+                # p link.text
+                if link.text =~ /^Profile - /
+                  name = $'
+                  name = name.split(" (")[0] if name =~ / \(/
+                  list << current
+                  current = {}
+                  current[:author] = name
+                  current[:url] = link.href
+                elsif link.href =~ /Organization/
+                  current[:organisation] = link.text
+                elsif link.text =~ /Publications: (\d+)/
+                  current[:publications] = $1
+                elsif link.text =~ /Citations: (\d+)/
+                  current[:citations] = $1
+                end
+              end
+            end
+          end
+        end
+        list
+      end
+
+      def Parser::author_info options
+        author = options.author
+        if options.author
+          agent = Mechanize.new
+          page = agent.get "http://academic.research.microsoft.com/search.html?query="+author
+          authorpage = agent.page.link_with(:text => author)
+          if authorpage
+            buf = authorpage.click.body
+          else
+            return ["Not found"]
+          end
+        else
+          # for testing
           buf = File.open("author.txt").read
         end
         # p authorpage
@@ -56,14 +128,13 @@ module BioBioinformaticsImpact
         #  Molecular Biology, Biochemistry, Genetics & Genealogy" />
 
         buf =~ /meta name="description" content="View #{author}'s professional profile. Publications: (\d+) \| Citations: (\d+) \| G-Index: (\d+) \| H-Index: (\d+)\. Interests:/
- 
+     
         publications = $1
         citations = $2
         g_index = $3
         h_index = $4
 
-        print '"Name","Publications","Citations","G-index","H-index"',"\n"
-        print '"',[author,publications,citations,g_index,h_index].join('","'),'"',"\n"
+        return [author,publications,citations,g_index,h_index]
 
         # page = agent.get "http://academic.research.microsoft.com/Author/28276/lincoln-d-stein"
         # p page
@@ -72,7 +143,6 @@ module BioBioinformaticsImpact
         # search_form.field_with(:name => "q").value = "Hello"
         # search_results = agent.submit search_form
         # puts search_results.body
-
       end
     end
   end

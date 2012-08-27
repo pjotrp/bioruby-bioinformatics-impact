@@ -4,6 +4,15 @@
 # Author:: Pjotr Prins
 # Copyright:: 2012
 
+USAGE = """
+  Usage: 
+    
+    dbpedia --help
+    msimpact --help
+
+    See README.txt
+"""
+
 gempath = File.dirname(File.dirname(__FILE__))
 $: << File.join(gempath,'lib')
 
@@ -27,14 +36,6 @@ log.outputters = Bio::Log::Outputter.stderr
 Bio::Log::CLI.logger('stderr')
 Bio::Log::CLI.trace('info')
 
-USAGE = """
-  Usage: 
-    
-    dbpedia --help
-    msimpact --help
-
-    See README.txt
-"""
 options = {:example_switch=>false,:show_help=>false}
 
 case ARGV[0]

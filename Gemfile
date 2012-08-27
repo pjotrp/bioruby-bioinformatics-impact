@@ -5,6 +5,10 @@ source "http://rubygems.org"
 
 gem "bio-logger"
 gem "bio-rdf"
+gem "bio-table", ">= 0.0.6"
+gem "rest-client"
+gem "ppe-4store-ruby"
+gem "mechanize"
 
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
