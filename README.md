@@ -35,6 +35,14 @@ The name can be used to fetch the numbers with
     "Lincoln D. Stein","274","10264","99","45"
 ```
 
+You can also use the direct link
+
+```bash
+  bio-bioinformatics-impact msimpact --link http://academic.research.microsoft.com/Author/28276/lincoln-d-stein
+    "Name","Publications","Citations","G-index","H-index"
+    "Lincoln D. Stein","274","10264","99","45"
+```
+
 To get a long list 
 
 ```bash

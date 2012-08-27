@@ -41,6 +41,9 @@ module BioBioinformaticsImpact
           o.on("--author query",String,"Search query") do |query|
             options.author = query
           end
+          o.on("--link url",String,"MS url") do |url|
+            options.link = url
+          end
           o.on("--search domain",String,"Search (e.g. bioinformatics)") do |query|
             options.search = query
           end
@@ -53,8 +56,11 @@ module BioBioinformaticsImpact
           list_authors(options.search).each do | author |
             print '"',[author[:author],author[:organisation],author[:publications],author[:citations],author[:url]].join('","'),'"',"\n"
           end
+        elsif options.link
+          print '"Name","Publications","Citations","G-index","H-index","Subjects"',"\n"
+          print '"',author_link(options).join('","'),'"',"\n"
         else
-          print '"Name","Publications","Citations","G-index","H-index"',"\n"
+          print '"Name","Publications","Citations","G-index","H-index","Subjects"',"\n"
           print '"',author_info(options).join('","'),'"',"\n"
         end
       end
@@ -104,20 +110,27 @@ module BioBioinformaticsImpact
         list
       end
 
+      def Parser::author_link options
+        url = options.link
+        agent = Mechanize.new
+        page = agent.get url
+        return parse_author_page(page)
+      end
+
       def Parser::author_info options
         author = options.author
         if options.author
           agent = Mechanize.new
           page = agent.get "http://academic.research.microsoft.com/search.html?query="+author
-          authorpage = agent.page.link_with(:text => author)
-          if authorpage
-            buf = authorpage.click.body
+          listpage = agent.page.link_with(:text => author)
+          if listpage
+            return parse_author_page(listpage.click)
           else
             return ["Not found"]
           end
         else
           # for testing
-          buf = File.open("author.txt").read
+          buf = File.open("author.html").read
         end
         # p authorpage
         # puts authorpage.body
@@ -143,6 +156,20 @@ module BioBioinformaticsImpact
         # search_form.field_with(:name => "q").value = "Hello"
         # search_results = agent.submit search_form
         # puts search_results.body
+      end
+      
+      def Parser::parse_author_page page
+        buf = page.body
+        buf =~ /meta name="description" content="View ([^']+)'s professional profile. Publications: (\d+) \| Citations: (\d+) \| G-Index: (\d+) \| H-Index: (\d+)\. Interests: ([^"]+)/
+     
+        author = $1
+        publications = $2
+        citations = $3
+        g_index = $4
+        h_index = $5
+        subjects = $6
+
+        return [author,publications,citations,g_index,h_index,subjects]
       end
     end
   end
