@@ -57,10 +57,10 @@ module BioBioinformaticsImpact
             print '"',[author[:author],author[:organisation],author[:publications],author[:citations],author[:url]].join('","'),'"',"\n"
           end
         elsif options.link
-          print '"Name","Publications","Citations","G-index","H-index","Subjects"',"\n"
+          print '"Name","Publications","Citations","G-index","H-index","Organization","Subjects"',"\n"
           print '"',author_link(options).join('","'),'"',"\n"
         else
-          print '"Name","Publications","Citations","G-index","H-index","Subjects"',"\n"
+          print '"Name","Publications","Citations","G-index","H-index","Organization","Subjects"',"\n"
           print '"',author_info(options).join('","'),'"',"\n"
         end
       end
@@ -77,18 +77,6 @@ module BioBioinformaticsImpact
             $stderr.print "."
             a.get("http://academic.research.microsoft.com/Detail?query=bioinformatics&searchtype=1&SearchDomain=#{domain}&start=#{page*PAGE_SIZE+1}&end=#{(page+1)*PAGE_SIZE}") do | page |      
               page.links.each do | link |
-                #  "Profile - Limsoon Wong"
-                #  "http://academic.research.microsoft.com/Author/2341760/limsoon-wong">
-                #  "Limsoon Wong"
-                #  "http://academic.research.microsoft.com/Author/2341760/limsoon-wong">
-                #  "National University of Singapore"
-                #  "Organization/13610/national-university-of-singapore">
-                #  "Publications: 336"
-                #  "http://academic.research.microsoft.com/Detail?entitytype=2&searchtype=2&id=2341760">
-                #  "Citations: 5125"
-                # pp link
-                # p link.href
-                # p link.text
                 if link.text =~ /^Profile - /
                   name = $'
                   name = name.split(" (")[0] if name =~ / \(/
@@ -119,45 +107,25 @@ module BioBioinformaticsImpact
 
       def Parser::author_info options
         author = options.author
-        if options.author
-          agent = Mechanize.new
-          page = agent.get "http://academic.research.microsoft.com/search.html?query="+author
-          listpage = agent.page.link_with(:text => author)
-          if listpage
-            return parse_author_page(listpage.click)
-          else
-            return ["Not found"]
-          end
+        agent = Mechanize.new
+        page = agent.get "http://academic.research.microsoft.com/search.html?query="+author
+        listpage = agent.page.link_with(:text => author)
+        if listpage
+          return parse_author_page(listpage.click)
         else
-          # for testing
-          buf = File.open("author.html").read
+          return ["Not found"]
         end
-        # p authorpage
-        # puts authorpage.body
-        # p buf
-
-        # <meta name="description" content="View Lincoln D. Stein's professional profi
-        # le. Publications: 274 | Citations: 10264 | G-Index: 99 | H-Index: 45. Interests:
-        #  Molecular Biology, Biochemistry, Genetics & Genealogy" />
-
-        buf =~ /meta name="description" content="View #{author}'s professional profile. Publications: (\d+) \| Citations: (\d+) \| G-Index: (\d+) \| H-Index: (\d+)\. Interests:/
-     
-        publications = $1
-        citations = $2
-        g_index = $3
-        h_index = $4
-
-        return [author,publications,citations,g_index,h_index]
-
-        # page = agent.get "http://academic.research.microsoft.com/Author/28276/lincoln-d-stein"
-        # p page
-        # search_form = page.form_with :name => "f"
-        # p search_form
-        # search_form.field_with(:name => "q").value = "Hello"
-        # search_results = agent.submit search_form
-        # puts search_results.body
       end
-      
+     
+      def Parser::parse_org_from_author_page page
+        page.links.each do | link |
+          if link.href =~ /Organization/
+            return link.text
+          end
+          ''
+        end
+      end
+
       def Parser::parse_author_page page
         buf = page.body
         buf =~ /meta name="description" content="View ([^']+)'s professional profile. Publications: (\d+) \| Citations: (\d+) \| G-Index: (\d+) \| H-Index: (\d+)\. Interests: ([^"]+)/
@@ -169,7 +137,7 @@ module BioBioinformaticsImpact
         h_index = $5
         subjects = $6
 
-        return [author,publications,citations,g_index,h_index,subjects]
+        return [author,publications,citations,g_index,h_index,parse_org_from_author_page(page),subjects]
       end
     end
   end
