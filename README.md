@@ -20,6 +20,21 @@ If available on Wikipedia, we can fetch personal information through
 
 Both Google and Microsoft publish citations, and impact indicators.
 
+### Google scholar
+
+Google does not provide an API for Scholar, nor has the intention,
+which is a shame. A SPARQL end point would be very useful.
+
+An applet lives at http://code.google.com/p/citations-gadget/, which
+is accessed by
+
+```bash
+  bio-bioinformatics-impact scholar --author "Lincoln D. Stein"
+```
+
+Note: this functionality has not yet been implemented.
+
+
 ### Microsoft academic research
 
 Find an author with a query such as

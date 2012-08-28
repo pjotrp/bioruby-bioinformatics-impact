@@ -7,6 +7,7 @@
 USAGE = """
   Usage: 
     
+    scholar --help
     dbpedia --help
     msimpact --help
 
@@ -46,6 +47,10 @@ case ARGV[0]
   when 'dbpedia'
     ARGV.shift
     BioBioinformaticsImpact::DbPedia::Parser.handler
+    exit 0
+  when 'scholar'
+    ARGV.shift
+    BioBioinformaticsImpact::Scholar::Parser.handler
     exit 0
   else 
     $stderr.print USAGE
