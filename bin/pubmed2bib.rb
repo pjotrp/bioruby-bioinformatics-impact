@@ -59,23 +59,26 @@ Bio::PubMed.efetch(entries).each do |entry|
   res = `lynx --dump "http://www.ncbi.nlm.nih.gov/pubmed/#{reference.pubmed}"`
   res =~ /Cited by( over)? (\d+)/
   cited = $2
-  cited += '+' if $1
+  # cited += '+' if $1
   bib += "  pmcited      = #{cited},\n" if cited
   searchfor = reference.doi
-  searchfor = reference.authors[0] + ' ' + reference.title.chop if searchfor==nil or searchfor == ''
-  $stderr.print searchfor
-  scholar="lynx --dump \"http://scholar.google.com/scholar?q=#{searchfor}\""
-  res = `#{scholar}`
-  inpaper=false
-  cited = nil
-  title = reference.title.chop[0..30]
-  res.each_line do | s |
-    if !inpaper
-      inpaper = true if s =~ /#{title}/
-    end
-    if inpaper and s =~ /Cited by (\d+)/
-      cited = $1
-      break
+  if reference.authors[0]
+    searchfor = reference.authors[0] + ' ' + reference.title.chop if searchfor==nil or searchfor == ''
+    $stderr.print searchfor
+    scholar="lynx --dump \"http://scholar.google.com/scholar?q=#{searchfor}\""
+    res = `#{scholar}`
+    inpaper=false
+    cited = nil
+    title = reference.title.chop[0..30]
+    res.each_line do | s |
+      if !inpaper
+        esctitle = title.gsub(/\[/,'\[')
+        inpaper = true if s =~ /#{esctitle}/
+      end
+      if inpaper and s =~ /Cited by (\d+)/
+        cited = $1
+        break
+      end
     end
   end
   bib += "  gscited      = #{cited},\n" if cited
