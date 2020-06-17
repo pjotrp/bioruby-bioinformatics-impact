@@ -1,4 +1,9 @@
 #!/usr/bin/env ruby
+#
+#
+# Use tags such as [au] and [dp]. For a list see
+#
+#   http://www.ncbi.nlm.nih.gov/books/NBK3827/
 
 $: << ENV['HOME']+'/izip/git/opensource/ruby/bioruby/lib'
 # p $:
@@ -6,14 +11,14 @@ $: << ENV['HOME']+'/izip/git/opensource/ruby/bioruby/lib'
 require 'bio'
 
 write_id=nil
-if ARGV[0] == '--id' 
+if ARGV[0] == '--id'
   ARGV.shift
   write_id = ARGV.shift
 end
 keywords = ARGV.join(' ')
 
 options = {
-  'maxdate' => '2012/01/01',
+  # 'maxdate' => '2012/01/01',
   'retmax' => 1000,
 }
 
@@ -24,17 +29,23 @@ Bio::PubMed.efetch(entries).each do |entry|
   medline = Bio::MEDLINE.new(entry)
   reference = medline.reference
 
+  PMCID = nil
+  if medline.pubmed["PMC"] =~ /(\d+)/
+    PMCID = $1
+  end
   # p reference.authors
   if reference.authors[0] =~ /^(\w+)/
     author = $1.capitalize
   end
 
-  keywords = "author title journal year volume number pages doi url abstract".split(/ /)
   section = 'article'
-  write_id = "#{author}:#{reference.year}" if !write_id
+  write_id = "#{author}:#{reference.year}"
   # bib = "\n@#{section}{PMID:#{reference.pubmed},\n"
   bib = "\n@#{section}{#{write_id},\n"
-  # bib += "  keywords     = {invariants},\n"
+  bib += "  keywords     = {},\n"
+  bib += "  pmid         = {#{reference.pubmed}},\n" if reference.pubmed
+  bib += "  pmcid        = {#{PMCID}},\n" if PMCID
+  keywords = "author title journal year volume number pages doi url abstract".split(/ /)
   keywords.each do | kw |
     if kw == 'author'
       ref = reference.authors.join(' and ')
@@ -54,6 +65,7 @@ Bio::PubMed.efetch(entries).each do |entry|
     end
     bib += "  #{kw.ljust(12)} = {#{ref}},\n" if ref != ''
   end
+  if false
   # Fetch citations
   $stderr.print reference.pubmed,"\n"
   res = `lynx --dump "http://www.ncbi.nlm.nih.gov/pubmed/#{reference.pubmed}"`
@@ -72,7 +84,7 @@ Bio::PubMed.efetch(entries).each do |entry|
     title = reference.title.chop[0..30]
     res.each_line do | s |
       if !inpaper
-        esctitle = title.gsub(/\[/,'\[')
+        esctitle = title.gsub(/\[/,'\[').gsub(/\(/,'\(')
         inpaper = true if s =~ /#{esctitle}/
       end
       if inpaper and s =~ /Cited by (\d+)/
@@ -84,7 +96,8 @@ Bio::PubMed.efetch(entries).each do |entry|
   bib += "  gscited      = #{cited},\n" if cited
   bib = bib.strip.chop
   # bib+="  eprint  = {invariants://#{author_year}.pdf},\n"
-  bib+="\n}\n"
+  end
+  bib+="}\n"
 
   print bib
 
