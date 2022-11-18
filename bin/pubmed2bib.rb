@@ -29,10 +29,12 @@ Bio::PubMed.efetch(entries).each do |entry|
   medline = Bio::MEDLINE.new(entry)
   reference = medline.reference
 
-  PMCID = nil
-  if medline.pubmed["PMC"] =~ /(\d+)/
-    PMCID = $1
-  end
+  pmcid = 
+    if medline.pubmed["PMC"] =~ /(\d+)/
+      $1
+    else
+      nil
+    end
   # p reference.authors
   if reference.authors[0] =~ /^(\w+)/
     author = $1.capitalize
@@ -44,7 +46,7 @@ Bio::PubMed.efetch(entries).each do |entry|
   bib = "\n@#{section}{#{write_id},\n"
   bib += "  keywords     = {},\n"
   bib += "  pmid         = {#{reference.pubmed}},\n" if reference.pubmed
-  bib += "  pmcid        = {#{PMCID}},\n" if PMCID
+  bib += "  pmcid        = {#{pmcid}},\n" if pmcid
   keywords = "author title journal year volume number pages doi url abstract".split(/ /)
   keywords.each do | kw |
     if kw == 'author'
@@ -54,6 +56,8 @@ Bio::PubMed.efetch(entries).each do |entry|
       ref = '{'+reference.title.sub(/\.$/,'')+'}'
     elsif kw == 'number'
       ref = reference.issue
+    elsif kw == 'abstract'
+      ref = reference.abstract.gsub(/%/,"\\%")
     elsif kw == 'url'
      if reference.url and reference.url != ''
        ref = reference.url
