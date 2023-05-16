@@ -46,9 +46,14 @@ Bio::PubMed.efetch(entries).each do |entry|
   # bib = "\n@#{section}{PMID:#{reference.pubmed},\n"
   bib = "\n@#{section}{#{write_id},\n"
   bib += "  keywords     = {},\n"
-  bib += "  pmid         = {#{reference.pubmed}},\n" if reference.pubmed
-  bib += "  pmcid        = {#{pmcid}},\n" if pmcid
-  bib += "  note         = {{PMC#{pmcid}}}\n" if pmcid
+  pmid = reference.pubmed
+  bib += "  pmid         = {#{reference.pubmed}},\n" if pmid
+  if pmcid
+    bib += "  pmcid        = {#{pmcid}},\n" 
+    bib += "  note         = {{PMC#{pmcid}}},\n" 
+  elsif pmid
+    bib += "  note         = {{PMID: #{pmid}}},\n"
+  end
   keywords = "author title journal year volume number pages doi url abstract".split(/ /)
   keywords.each do | kw |
     if kw == 'author'
