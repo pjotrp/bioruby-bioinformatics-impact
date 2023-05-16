@@ -35,6 +35,7 @@ Bio::PubMed.efetch(entries).each do |entry|
     else
       nil
     end
+
   # p reference.authors
   if reference.authors[0] =~ /^(\w+)/
     author = $1.capitalize
@@ -47,6 +48,7 @@ Bio::PubMed.efetch(entries).each do |entry|
   bib += "  keywords     = {},\n"
   bib += "  pmid         = {#{reference.pubmed}},\n" if reference.pubmed
   bib += "  pmcid        = {#{pmcid}},\n" if pmcid
+  bib += "  note         = {{PMC#{pmcid}}}\n" if pmcid
   keywords = "author title journal year volume number pages doi url abstract".split(/ /)
   keywords.each do | kw |
     if kw == 'author'
